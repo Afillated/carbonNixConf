@@ -26,7 +26,7 @@
       configurationLimit = 8;
     };
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.linuxPackages_latest;
 
     loader.efi.canTouchEfiVariables = true;
     plymouth.enable = true;
@@ -165,7 +165,7 @@
  nix.settings.experimental-features = ["nix-command" "flakes"];
   programs.nh = {
     enable = true;
-    flake = "/home/tea/hauntedcupofdotfiles";
+  # flake = "~/carbonflake/flake.nix";
     clean = {
       enable = true;
       dates = "weekly";
@@ -183,6 +183,7 @@
    spotify
    git
    inputs.zen-browser.packages.${pkgs.system}.twilight
+   starship
    ];
 
   # Some programs need SUID wrappers, can be configured further or are
