@@ -134,6 +134,7 @@
 
   # Install firefox.
   programs.firefox.enable = true;
+  #Install and Configuration for Steam
   programs = {
     steam = {
       enable = true;
@@ -162,8 +163,9 @@
 
   # Allow unfree 
   nixpkgs.config.allowUnfree = true;
-
- nix.settings.experimental-features = ["nix-command" "flakes"];
+  #Allows flakes
+  #Nix helper(goated)
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   programs.nh = {
     enable = true;
   # flake = "~/carbonflake/flake.nix";
@@ -173,7 +175,9 @@
       extraArgs = "--keep 8";
     };
   };
-
+  
+  #Setting starship as interactive shell
+  programs.bash.interactiveShellInit = "starship";
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -185,6 +189,7 @@
    git
    inputs.zen-browser.packages.${pkgs.system}.twilight
    starship
+   gitui
    ];
 
   # Some programs need SUID wrappers, can be configured further or are
