@@ -1,5 +1,5 @@
 {
-  description = "hauntedcupoftea's hauntedcupofdotfiles";
+  description = "a basic and very cluttered flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";

@@ -97,9 +97,10 @@
     open = false;
 
     nvidiaSettings = true;
+    # nixpkgs.config.nvidia.acceptLicense = true;
 
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
-  };
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_535;
+   };
   
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
