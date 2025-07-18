@@ -7,13 +7,18 @@
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
     };
-  };
+    grub2-themes = {
+      url = "github:vinceliuice/grub2-themes";
+    };
+   };
+
 
   outputs = {
     self,
     nh,
     nixpkgs,
     zen-browser,
+    grub2-themes,
     ...
   } @ inputs: {
     nixosConfigurations = {
@@ -22,6 +27,7 @@
         specialArgs = {inherit inputs;};
         modules = [
           ./hdabrosPC
+          grub2-themes.nixosModules.default
         ];
       };
     };

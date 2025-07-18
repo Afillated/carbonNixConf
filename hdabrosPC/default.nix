@@ -24,15 +24,21 @@
       useOSProber = true; # Detect Windows
       default = "saved"; # Default to last booted OS
       configurationLimit = 8;
-    };
+   };
+   # kernelPackages = pkgs.linuxPackages_latest;
 
-    # kernelPackages = pkgs.linuxPackages_latest;
-
-    loader.efi.canTouchEfiVariables = true;
-    plymouth.enable = true;
+   loader.efi.canTouchEfiVariables = true;
+   plymouth.enable = true;
 
     # Add NTFS support
     supportedFilesystems = [ "ntfs" ];
+  };
+
+   boot.loader.grub2-theme = {
+    enable = true;
+    theme = "stylish";
+    footer = true;
+    customResolution = "1920x1080";  # Optional: Set a custom resolution
   };
 
   networking.hostName = "carbon"; # Define your hostname.
@@ -190,6 +196,7 @@
    inputs.zen-browser.packages.${pkgs.system}.twilight
    starship
    gitui
+   grub2
    ];
 
   # Some programs need SUID wrappers, can be configured further or are
