@@ -197,8 +197,9 @@
    starship
    gitui
    grub2
-   piper
-   libratbag
+   # piper
+   # libratbag
+   android-tools
    pmbootstrap
   ];
 
