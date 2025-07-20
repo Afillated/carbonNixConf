@@ -174,7 +174,7 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
   programs.nh = {
     enable = true;
-  # flake = "~/carbonflake/flake.nix";
+    # flake = "~/carbonflake";
     clean = {
       enable = true;
       dates = "weekly";
@@ -197,8 +197,7 @@
    starship
    gitui
    grub2
-   # piper
-   # libratbag
+   spicetify-cli
    android-tools
    pmbootstrap
   ];
