@@ -10,6 +10,9 @@
     grub2-themes = {
       url = "github:vinceliuice/grub2-themes";
     };
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+    };
    };
 
 
@@ -28,6 +31,7 @@
         modules = [
           ./hdabrosPC
           grub2-themes.nixosModules.default
+          inputs.spicetify-nix.nixosModules.default
         ];
       };
     };

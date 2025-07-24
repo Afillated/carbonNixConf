@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+    
       
     ];
 
@@ -170,8 +171,7 @@
   # Allow unfree 
   nixpkgs.config.allowUnfree = true;
   #Allows flakes
-  #Nix helper(goated)
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = ["nix-command" "flakes"]; 
   programs.nh = {
     enable = true;
     # flake = "~/carbonflake";
@@ -181,8 +181,37 @@
       extraArgs = "--keep 8";
     };
   };
-  
-  #Setting starship as interactive shell
+
+  programs.spicetify =
+  let
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+  in
+ {
+   enable = true;
+
+   enabledExtensions = with spicePkgs.extensions; [
+     adblock
+     hidePodcasts
+     shuffle # shuffle+ (special characters are sanitized out of extension names)
+   ];
+   enabledCustomApps = with spicePkgs.apps; [
+     newReleases
+     # ncsVisualizer
+   ];
+   enabledSnippets = with spicePkgs.snippets; [
+     rotatingCoverart
+     pointer
+   ];
+
+   theme = spicePkgs.themes.onepunch;
+   # colorScheme = "mocha";
+};
+
+
+
+
+
+    #Setting starship as interactive shell
   programs.bash.interactiveShellInit = "starship";
 
   # List packages installed in system profile. To search, run:
@@ -191,13 +220,13 @@
    helix  
    wget
    vesktop
-   spotify
+   # spotify
    git
    inputs.zen-browser.packages.${pkgs.system}.twilight
    starship
    gitui
    grub2
-   spicetify-cli
+   # spicetify-cli
    android-tools
    pmbootstrap
   ];
