@@ -203,15 +203,15 @@
      pointer
    ];
 
-   theme = spicePkgs.themes.onepunch;
+   theme = spicePkgs.themes.burntSienna;
    # colorScheme = "mocha";
 };
 
+  #add kde connect
+  programs.kdeconnect.enable = true;
 
 
-
-
-    #Setting starship as interactive shell
+  #Setting starship as interactive shell
   programs.bash.interactiveShellInit = "starship";
 
   # List packages installed in system profile. To search, run:
