@@ -2,15 +2,21 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, config, pkgs, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    
-      
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+
+    ../modules/system/hyprland.nix
+
+  ];
 
   # Bootloader.
   # boot.loader.systemd-boot.enable = true;
@@ -25,21 +31,21 @@
       useOSProber = true; # Detect Windows
       default = "saved"; # Default to last booted OS
       configurationLimit = 8;
-   };
-   # kernelPackages = pkgs.linuxPackages_latest;
+    };
+    # kernelPackages = pkgs.linuxPackages_latest;
 
-   loader.efi.canTouchEfiVariables = true;
-   plymouth.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    plymouth.enable = true;
 
     # Add NTFS support
     supportedFilesystems = [ "ntfs" ];
   };
 
-   boot.loader.grub2-theme = {
+  boot.loader.grub2-theme = {
     enable = true;
     theme = "stylish";
     footer = true;
-    customResolution = "1920x1080";  # Optional: Set a custom resolution
+    customResolution = "1920x1080"; # Optional: Set a custom resolution
   };
 
   networking.hostName = "carbon"; # Define your hostname.
@@ -77,6 +83,7 @@
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
+  # programs.hyprland.enable = true; # enable Hyprland
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -86,7 +93,7 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -107,8 +114,8 @@
     # nixpkgs.config.nvidia.acceptLicense = true;
 
     package = config.boot.kernelPackages.nvidiaPackages.stable;
-   };
-  
+  };
+
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -132,10 +139,13 @@
   users.users.carbon = {
     isNormalUser = true;
     description = "Afillatedcarbon";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
       kdePackages.kate
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -167,14 +177,16 @@
     };
   };
 
-
-  # Allow unfree 
+  # Allow unfree
   nixpkgs.config.allowUnfree = true;
   #Allows flakes
-  nix.settings.experimental-features = ["nix-command" "flakes"]; 
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   programs.nh = {
     enable = true;
-    # flake = "~/carbonflake";
+    flake = "/home/carbon/carbonflake";
     clean = {
       enable = true;
       dates = "weekly";
@@ -183,33 +195,32 @@
   };
 
   programs.spicetify =
-  let
-  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-  in
- {
-   enable = true;
+    let
+      spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+    in
+    {
+      enable = true;
 
-   enabledExtensions = with spicePkgs.extensions; [
-     adblock
-     hidePodcasts
-     shuffle # shuffle+ (special characters are sanitized out of extension names)
-   ];
-   enabledCustomApps = with spicePkgs.apps; [
-     newReleases
-     # ncsVisualizer
-   ];
-   enabledSnippets = with spicePkgs.snippets; [
-     rotatingCoverart
-     pointer
-   ];
+      enabledExtensions = with spicePkgs.extensions; [
+        adblock
+        hidePodcasts
+        shuffle # shuffle+ (special characters are sanitized out of extension names)
+      ];
+      enabledCustomApps = with spicePkgs.apps; [
+        newReleases
+        # ncsVisualizer
+      ];
+      enabledSnippets = with spicePkgs.snippets; [
+        rotatingCoverart
+        pointer
+      ];
 
-   theme = spicePkgs.themes.burntSienna;
-   # colorScheme = "mocha";
-};
+      theme = spicePkgs.themes.burntSienna;
+      # colorScheme = "mocha";
+    };
 
   #add kde connect
   programs.kdeconnect.enable = true;
-
 
   #Setting starship as interactive shell
   programs.bash.interactiveShellInit = "starship";
@@ -217,18 +228,20 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-   helix  
-   wget
-   vesktop
-   # spotify
-   git
-   inputs.zen-browser.packages.${pkgs.system}.twilight
-   starship
-   gitui
-   grub2
-   # spicetify-cli
-   android-tools
-   pmbootstrap
+    helix
+    wget
+    vesktop
+    # spotify
+    git
+    inputs.zen-browser.packages.${pkgs.system}.twilight
+    starship
+    gitui
+    grub2
+    # spicetify-cli
+    android-tools
+    pmbootstrap
+    # kitty
+    nil
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

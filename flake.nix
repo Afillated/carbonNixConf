@@ -13,7 +13,9 @@
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
     };
-   };
+    hyprland.url = "github:hyprwm/Hyprland";
+
+  };
 
 
   outputs = {
@@ -25,7 +27,7 @@
     ...
   } @ inputs: {
     nixosConfigurations = {
-      "hdabrosPC" = nixpkgs.lib.nixosSystem {
+      "carbon" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
