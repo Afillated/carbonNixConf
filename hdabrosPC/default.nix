@@ -223,7 +223,7 @@
   programs.kdeconnect.enable = true;
 
   #Setting starship as interactive shell
-  programs.bash.interactiveShellInit = "starship";
+  programs.bash.interactiveShellInit = ''eval "$(starship init bash)"'';
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -242,6 +242,8 @@
     pmbootstrap
     # kitty
     nil
+    walker
+    mako
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

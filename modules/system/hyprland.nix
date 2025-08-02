@@ -1,8 +1,8 @@
-{ inputs, pkgs, ... }: {
+{ pkgs, ... }: {
   # Enable Hyprland at the system level
   programs.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.default;
+    package = pkgs.hyprland;
     withUWSM = true;
     xwayland.enable = true; # kinda needed for electron apps sadly
   };
@@ -20,6 +20,7 @@
     playerctl
     hyprpicker
     libqalculate
+    hyprpaper
 
     # xdg-focused stuff
     xdg-utils
