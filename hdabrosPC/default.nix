@@ -16,6 +16,7 @@
 
     ../modules/system/hyprland.nix
 
+    # ../modules/dev/fish.nix
   ];
 
   # Bootloader.
@@ -219,6 +220,12 @@
       # colorScheme = "mocha";
     };
 
+  # programs.starship = {
+    # enable = true;
+    # enableFishIntegration = true;
+  # };
+
+  # programs.fish.enable = true;
   #add kde connect
   programs.kdeconnect.enable = true;
 
