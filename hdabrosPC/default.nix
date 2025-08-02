@@ -25,12 +25,19 @@
     # Enable GRUB
     loader.grub = {
       enable = true;
+      version = 2;
       device = "nodev";
       efiSupport = true;
       enableCryptodisk = false;
       useOSProber = true; # Detect Windows
       default = "saved"; # Default to last booted OS
       configurationLimit = 8;
+      darkmatter-theme = {
+        enable = true;
+        style = "nixos";
+        icon = "color";
+        resolution = "1080p";
+      };
     };
     # kernelPackages = pkgs.linuxPackages_latest;
 
@@ -39,13 +46,6 @@
 
     # Add NTFS support
     supportedFilesystems = [ "ntfs" ];
-  };
-
-  boot.loader.grub2-theme = {
-    enable = true;
-    theme = "stylish";
-    footer = true;
-    customResolution = "1920x1080"; # Optional: Set a custom resolution
   };
 
   networking.hostName = "carbon"; # Define your hostname.

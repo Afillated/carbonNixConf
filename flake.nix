@@ -7,35 +7,38 @@
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
     };
-    grub2-themes = {
-      url = "github:vinceliuice/grub2-themes";
+    darkmatter-grub-theme = {
+      url = "gitlab:VandalByte/darkmatter-grub-theme";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
     };
     hyprland.url = "github:hyprwm/Hyprland";
+    
 
   };
 
-
-  outputs = {
-    self,
-    nh,
-    nixpkgs,
-    zen-browser,
-    grub2-themes,
-    ...
-  } @ inputs: {
-    nixosConfigurations = {
-      "carbon" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./hdabrosPC
-          grub2-themes.nixosModules.default
-          inputs.spicetify-nix.nixosModules.default
-        ];
+  outputs =
+    {
+      self,
+      nh,
+      nixpkgs,
+      zen-browser,
+      darkmatter-grub-theme,
+      ...
+    }@inputs:
+    {
+      nixosConfigurations = {
+        "carbon" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hdabrosPC
+            darkmatter-grub-theme.nixosModule
+            inputs.spicetify-nix.nixosModules.default
+          ];
+        };
       };
     };
-  };
 }

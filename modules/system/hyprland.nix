@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # Enable Hyprland at the system level
   programs.hyprland = {
     enable = true;
@@ -25,8 +26,11 @@
     hyprsysteminfo
     hyprland-qt-support
     hyprcursor
-    catppuccin-cursors.frappeRed
+    hyprshot
 
+    
+    # catppuccin-cursors.frappeRed
+    bibata-cursors
     # xdg-focused stuff
     xdg-utils
     shared-mime-info
@@ -43,6 +47,7 @@
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     NVD_BACKEND = "direct";
     XCURSOR_THEME = "catppuccin-macchiato-red-cursors";
+    XCURSOR_SIZE = 24;
   };
 
   programs.uwsm = {
