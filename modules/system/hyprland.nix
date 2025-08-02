@@ -21,6 +21,11 @@
     hyprpicker
     libqalculate
     hyprpaper
+    hyprpolkitagent
+    hyprsysteminfo
+    hyprland-qt-support
+    hyprcursor
+    catppuccin-cursors.frappeRed
 
     # xdg-focused stuff
     xdg-utils
@@ -37,6 +42,7 @@
     LIBVA_DRIVER_NAME = "nvidia";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     NVD_BACKEND = "direct";
+    XCURSOR_THEME = "catppuccin-macchiato-red-cursors";
   };
 
   programs.uwsm = {
