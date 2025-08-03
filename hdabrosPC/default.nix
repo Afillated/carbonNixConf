@@ -26,7 +26,7 @@
     # Enable GRUB
     loader.grub = {
       enable = true;
-      version = 2;
+      # version = 2;
       device = "nodev";
       efiSupport = true;
       enableCryptodisk = false;
@@ -81,9 +81,10 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+
+  services.greetd.enable = true;
+  programs.regreet.enable = true;
+  # services.desktopManager.plasma6.enable = true;
   # programs.hyprland.enable = true; # enable Hyprland
 
   # Configure keymap in X11
@@ -144,10 +145,10 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [
-      kdePackages.kate
-      #  thunderbird
-    ];
+    # packages = with pkgs; [
+    # kdePackages.kate
+    #  thunderbird
+    # ];
   };
 
   # Install firefox.
@@ -221,13 +222,13 @@
     };
 
   # programs.starship = {
-    # enable = true;
-    # enableFishIntegration = true;
+  # enable = true;
+  # enableFishIntegration = true;
   # };
 
   # programs.fish.enable = true;
   #add kde connect
-  programs.kdeconnect.enable = true;
+  # programs.kdeconnect.enable = true;
 
   #Setting starship as interactive shell
   programs.bash.interactiveShellInit = ''eval "$(starship init bash)"'';

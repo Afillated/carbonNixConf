@@ -25,7 +25,7 @@
     hyprpolkitagent
     hyprsysteminfo
     hyprland-qt-support
-    hyprcursor
+    # hyprcursor
     hyprshot
 
     
@@ -42,12 +42,15 @@
   # these are actually tied to both nvidia and hyprland in part,
   # so PLEASE consult the hyprland wiki before building this on non novideo systems
   environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
+    # NIXOS_OZONE_WL = "1";
     LIBVA_DRIVER_NAME = "nvidia";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     NVD_BACKEND = "direct";
-    XCURSOR_THEME = "catppuccin-macchiato-red-cursors";
+    XCURSOR_THEME = "Bibata-Modern-Classic";
     XCURSOR_SIZE = 24;
+    # HYPRCURSOR_THEME = "Bibata-Modern-Classic";
+    ELECTRON_OZONE_PLATFORM_HINT = "auto"; # for nvidia/wayland i think
+
   };
 
   programs.uwsm = {
