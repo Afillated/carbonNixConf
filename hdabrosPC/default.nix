@@ -33,12 +33,12 @@
       useOSProber = true; # Detect Windows
       default = "saved"; # Default to last booted OS
       configurationLimit = 8;
-      darkmatter-theme = {
-        enable = true;
-        style = "nixos";
-        icon = "color";
-        resolution = "1080p";
-      };
+      # darkmatter-theme = {
+      # enable = true;
+      # style = "nixos";
+      # icon = "color";
+      # resolution = "1080p";
+      # };
     };
     # kernelPackages = pkgs.linuxPackages_latest;
 
@@ -80,7 +80,16 @@
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
-
+  #Enable Stylix
+  stylix = {
+    enable = true;
+    image = ../wallpaper;
+    cursor = {
+      name = "Bibata-Modern-Classic";
+      package = pkgs.bibata-cursors;
+      size = 36;
+    };
+  };
 
   services.greetd.enable = true;
   programs.regreet.enable = true;
@@ -217,7 +226,7 @@
         pointer
       ];
 
-      theme = spicePkgs.themes.burntSienna;
+      # theme = spicePkgs.themes.burntSienna;
       # colorScheme = "mocha";
     };
 

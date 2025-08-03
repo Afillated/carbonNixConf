@@ -7,14 +7,18 @@
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
     };
-    darkmatter-grub-theme = {
-      url = "gitlab:VandalByte/darkmatter-grub-theme";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # darkmatter-grub-theme = {
+      # url = "gitlab:VandalByte/darkmatter-grub-theme";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    # };
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
     };
     hyprland.url = "github:hyprwm/Hyprland";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     
 
   };
@@ -25,7 +29,8 @@
       nh,
       nixpkgs,
       zen-browser,
-      darkmatter-grub-theme,
+      # darkmatter-grub-theme,
+      stylix,
       ...
     }@inputs:
     {
@@ -35,8 +40,9 @@
           specialArgs = { inherit inputs; };
           modules = [
             ./hdabrosPC
-            darkmatter-grub-theme.nixosModule
+            # darkmatter-grub-theme.nixosModule
             inputs.spicetify-nix.nixosModules.default
+            stylix.nixosModules.stylix
           ];
         };
       };
